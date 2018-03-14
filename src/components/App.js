@@ -13,10 +13,6 @@ class App extends React.Component {
     };
   }
 
-  // TODO: componentWillMount()
-  // TODO: componentDidMount()
-  // TODO: componentWillUnmount()
-
   startInterval = () => {
     this.interval = setInterval(this.fetchTweets, 2000);
   }
@@ -30,6 +26,10 @@ class App extends React.Component {
     });
   }
 
+  componentWillMount() {
+    this.fetchTweets()
+  }
+
   render() {
     return (
       <div>
@@ -37,6 +37,16 @@ class App extends React.Component {
       </div>
     )
   }
+
+  componentDidMount() {
+    this.startInterval();
+  }
+
+  componentWillUnmount() {
+    this.cleanUpInterval();
+  }
+
+
 }
 
 export default App;
